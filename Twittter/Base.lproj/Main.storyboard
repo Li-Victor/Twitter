@@ -67,7 +67,21 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Aziz Ansari" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRj-Ma-3KZ">
-                                                    <rect key="frame" x="83" y="11" width="275" height="21"/>
+                                                    <rect key="frame" x="83" y="11" width="105" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@azizansari" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adv-W2-Tg0">
+                                                    <rect key="frame" x="200" y="11" width="92" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="6/9/16" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0C-gi-Q9S">
+                                                    <rect key="frame" x="300" y="11" width="50" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -122,6 +136,8 @@
                                         <connections>
                                             <outlet property="favoriteCountLabel" destination="G6L-1r-tT6" id="TpV-oG-mxO"/>
                                             <outlet property="retweetCountLabel" destination="hrQ-Ex-u9n" id="dOH-FS-dmZ"/>
+                                            <outlet property="tweetDateLabel" destination="j0C-gi-Q9S" id="jxm-7x-VWO"/>
+                                            <outlet property="tweetScreenNameLabel" destination="adv-W2-Tg0" id="hmG-SB-d3M"/>
                                             <outlet property="tweetTextLabel" destination="K8v-WF-Rvb" id="37x-vE-zUm"/>
                                             <outlet property="tweetUserImage" destination="tV4-yL-LBm" id="Ogn-f3-vZA"/>
                                             <outlet property="tweetUsernameLabel" destination="kRj-Ma-3KZ" id="qF6-By-YPn"/>

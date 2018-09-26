@@ -12,6 +12,8 @@ import AlamofireImage
 class TweetCell: UITableViewCell {
     
     @IBOutlet weak var tweetUserImage: UIImageView!
+    @IBOutlet weak var tweetScreenNameLabel: UILabel!
+    @IBOutlet weak var tweetDateLabel: UILabel!
     @IBOutlet weak var tweetUsernameLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: UILabel!
     @IBOutlet weak var retweetCountLabel: UILabel!
@@ -20,6 +22,8 @@ class TweetCell: UITableViewCell {
     var tweet: Tweet! {
         didSet {
             tweetUserImage.af_setImage(withURL: tweet.user.profileImageURL)
+            tweetScreenNameLabel.text = "@\(tweet.user.screenName)"
+            tweetDateLabel.text = tweet.createdAtString
             tweetUsernameLabel.text = tweet.user.name
             tweetTextLabel.text = tweet.text
             retweetCountLabel.text = String(tweet.retweetCount)
