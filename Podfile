@@ -8,6 +8,7 @@ target 'Twittter' do
   # Pods for Twittter
   pod 'Alamofire', '~> 4.7'
   pod 'OAuthSwift', '~> 1.2.0'
+  pod 'AlamofireImage', '~> 3.4'
   pod 'OAuthSwiftAlamofire'
   pod 'KeychainAccess'
 
