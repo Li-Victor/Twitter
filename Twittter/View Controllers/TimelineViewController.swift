@@ -10,6 +10,10 @@ import UIKit
 
 class TimelineViewController: UIViewController {
 
+    @IBAction func onLogout(_ sender: Any) {
+        APIManager.shared.logout()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

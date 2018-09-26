@@ -35,6 +35,7 @@
 		5756A30A215B15CA00573A08 /* KeysSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysSample.swift; sourceTree = "<group>"; };
 		5756A30D215B180A00573A08 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5756A30F215B18C200573A08 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		5756A311215B2B2200573A08 /* Twittter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Twittter.entitlements; sourceTree = "<group>"; };
 		7CE5D0E120E51FD798F24360 /* Pods_Twittter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twittter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D9B051DB9141D3E92437ACE /* Pods-Twittter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twittter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twittter/Pods-Twittter.debug.xcconfig"; sourceTree = "<group>"; };
 		DA615836ACCF911470351070 /* Pods-Twittter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twittter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twittter/Pods-Twittter.release.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +74,7 @@
 		570851F9215A92A400E073B8 /* Twittter */ = {
 			isa = PBXGroup;
 			children = (
+				5756A311215B2B2200573A08 /* Twittter.entitlements */,
 				5756A30C215B17FF00573A08 /* Models */,
 				5756A305215A967400573A08 /* API */,
 				5756A300215A941E00573A08 /* View Controllers */,
@@ -164,6 +166,11 @@
 				TargetAttributes = {
 					570851F6215A92A400E073B8 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -400,6 +407,7 @@
 			baseConfigurationReference = 9D9B051DB9141D3E92437ACE /* Pods-Twittter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Twittter/Twittter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 642L4VF2C9;
 				INFOPLIST_FILE = Twittter/Info.plist;
@@ -419,6 +427,7 @@
 			baseConfigurationReference = DA615836ACCF911470351070 /* Pods-Twittter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Twittter/Twittter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 642L4VF2C9;
 				INFOPLIST_FILE = Twittter/Info.plist;

@@ -79,6 +79,13 @@ class APIManager: SessionManager {
         }
     }
     
+    func logout() {
+        User.current = nil
+        clearCredentials()
+        
+        NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
+    }
+    
     func getHomeTimeLine(completion: @escaping ([Tweet]?, Error?) -> ()) {
         
         // This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh
@@ -164,7 +171,6 @@ class APIManager: SessionManager {
     
     // MARK: Clear tokens in Keychain
     private func clearCredentials() {
-        // Store access token in keychain
         let keychain = Keychain()
         do {
             try keychain.remove("twitter_credentials")
