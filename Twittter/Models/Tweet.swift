@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DateToolsSwift
 
 struct Tweet {
     let id: Int64 // For favoriting, retweeting & replying
@@ -54,11 +55,7 @@ struct Tweet {
         formatter.dateFormat = "E MMM d HH:mm:ss Z y"
         // Convert String to Date
         let date = formatter.date(from: createdAtOriginalString)!
-        // Configure output format
-        formatter.dateStyle = .short
-        formatter.timeStyle = .none
-        // Convert Date to String and set the createdAtString property
-        self.createdAtString = formatter.string(from: date)
+        self.createdAtString = date.shortTimeAgo(since: Date())
     }
     
     static func tweets(with array: [[String: Any]]) -> [Tweet] {
