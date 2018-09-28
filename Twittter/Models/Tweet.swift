@@ -11,10 +11,10 @@ import Foundation
 struct Tweet {
     let id: Int64 // For favoriting, retweeting & replying
     let text: String // Text content of tweet
-    let favoriteCount: Int // Update favorite count label
-    let favorited: Bool? // Configure favorite button
-    let retweetCount: Int // Update favorite count label
-    let retweeted: Bool // Configure retweet button
+    var favoriteCount: Int // Update favorite count label
+    var favorited: Bool // Configure favorite button
+    var retweetCount: Int // Update favorite count label
+    var retweeted: Bool // Configure retweet button
     let user: User // Author of the Tweet
     let createdAtString: String // String representation of date posted
     
@@ -41,7 +41,7 @@ struct Tweet {
         retweetCount = dictionary["retweet_count"] as! Int
         retweeted = dictionary["retweeted"] as! Bool
         
-        favorited = dictionary["favorited"] as? Bool
+        favorited = dictionary["favorited"] as? Bool ?? false
         
         // initialize user
         let user = dictionary["user"] as! [String: Any]

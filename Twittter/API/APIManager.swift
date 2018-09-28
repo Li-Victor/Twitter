@@ -79,6 +79,7 @@ class APIManager: SessionManager {
         }
     }
     
+    // MARK: Logout current user
     func logout() {
         User.current = nil
         clearCredentials()
@@ -86,6 +87,7 @@ class APIManager: SessionManager {
         NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
     }
     
+    // MARK: Get User Timeline
     func getHomeTimeLine(completion: @escaping ([Tweet]?, Error?) -> ()) {
         
         // This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh
@@ -140,6 +142,44 @@ class APIManager: SessionManager {
                 }
         }
     }
+    
+    // MARK: Favorite a Tweet
+    func favorite(_ tweet: Tweet, completion: @escaping (Tweet?, Error?) -> ()) {
+        let urlString = "https://api.twitter.com/1.1/favorites/create.json"
+        let parameters = ["id": tweet.id]
+        request(urlString, method: .post, parameters: parameters, encoding: URLEncoding.queryString).validate().responseJSON { (response) in
+            if response.result.isSuccess,
+                let tweetDictionary = response.result.value as? [String: Any] {
+                
+                let tweet = Tweet(dictionary: tweetDictionary)
+                completion(tweet, nil)
+            } else {
+                completion(nil, response.result.error)
+            }
+        }
+    }
+    
+    // MARK: TODO: Un-Favorite a Tweet
+    func unFavorite(_ tweet: Tweet, completion: @escaping (Tweet?, Error?) -> ()) {
+        let urlString = "https://api.twitter.com/1.1/favorites/destroy.json"
+        let parameters = ["id": tweet.id]
+        request(urlString, method: .post, parameters: parameters, encoding: URLEncoding.queryString).validate().responseJSON { (response) in
+            if response.result.isSuccess,
+                let tweetDictionary = response.result.value as? [String: Any] {
+                
+                let tweet = Tweet(dictionary: tweetDictionary)
+                completion(tweet, nil)
+            } else {
+                completion(nil, response.result.error)
+            }
+        }
+    }
+    
+    // MARK: TODO: Retweet
+    
+    // MARK: TODO: Un-Retweet
+    
+    // MARK: TODO: Compose Tweet
     
     // MARK: Handle url
     // OAuth Step 3
