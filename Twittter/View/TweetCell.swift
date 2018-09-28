@@ -24,33 +24,42 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var favoriteCountLabel: UILabel!
     
     @IBAction func didTapRetweet(_ sender: Any) {
-        
+        let userRetweeted = tweet.retweeted ? false : true
+        if userRetweeted {
+            APIManager.shared.retweet(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error retweeting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully retweeted the following Tweet: \n\(tweet.text)")
+                     self.tweet = tweet
+                }
+            }
+        } else {
+            // user unretweet
+        }
     }
     
     @IBAction func didTapFavorite(_ sender: Any) {
-        tweet.favorited = !tweet.favorited
-        if tweet.favorited {
-            tweet.favoriteCount += 1
+        let userFavorited = tweet.favorited ? false : true
+        if userFavorited {
             APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
                 if let  error = error {
                     print("Error favoriting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
                     print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                    self.tweet = tweet
                 }
             }
         } else {
-            tweet.favoriteCount -= 1
             APIManager.shared.unFavorite(tweet) { (tweet: Tweet?, error: Error?) in
                 if let  error = error {
                     print("Error favoriting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
                     print("Successfully unfavorited the following Tweet: \n\(tweet.text)")
+                    self.tweet = tweet
                 }
             }
         }
-        
-        configureCell()
-        
     }
     
     var tweet: Tweet! {
@@ -70,6 +79,12 @@ class TweetCell: UITableViewCell {
             favoriteButton.setImage(UIImage(named: "favor-icon"), for: .normal)
         } else {
             favoriteButton.setImage(UIImage(named: "favor-icon-1"), for: .normal)
+        }
+        
+        if tweet.retweeted {
+            retweetButton.setImage(UIImage(named: "retweet-icon-green"), for: .normal)
+        } else {
+            retweetButton.setImage(UIImage(named: "retweet-icon"), for: .normal)
         }
         
         retweetCountLabel.text = String(tweet.retweetCount)
