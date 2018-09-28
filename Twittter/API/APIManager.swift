@@ -146,7 +146,7 @@ class APIManager: SessionManager {
     // MARK: Favorite a Tweet
     func favorite(_ tweet: Tweet, completion: @escaping (Tweet?, Error?) -> ()) {
         let urlString = "https://api.twitter.com/1.1/favorites/create.json"
-        let parameters = ["id": tweet.id]
+        let parameters = ["id": tweet.id_str]
         request(urlString, method: .post, parameters: parameters, encoding: URLEncoding.queryString).validate().responseJSON { (response) in
             if response.result.isSuccess,
                 let tweetDictionary = response.result.value as? [String: Any] {
@@ -162,7 +162,7 @@ class APIManager: SessionManager {
     // MARK: Un-Favorite a Tweet
     func unFavorite(_ tweet: Tweet, completion: @escaping (Tweet?, Error?) -> ()) {
         let urlString = "https://api.twitter.com/1.1/favorites/destroy.json"
-        let parameters = ["id": tweet.id]
+        let parameters = ["id": tweet.id_str]
         request(urlString, method: .post, parameters: parameters, encoding: URLEncoding.queryString).validate().responseJSON { (response) in
             if response.result.isSuccess,
                 let tweetDictionary = response.result.value as? [String: Any] {
@@ -177,7 +177,7 @@ class APIManager: SessionManager {
     
     // MARK: Retweet
     func retweet(_ tweet: Tweet, completion: @escaping (Tweet?, Error?) -> ()) {
-        let tweetID = tweet.id
+        let tweetID = tweet.id_str
         let urlString = "https://api.twitter.com/1.1/statuses/retweet/\(tweetID).json"
         request(urlString, method: .post, parameters: nil, encoding: URLEncoding.queryString).validate().responseJSON { (response) in
             if response.result.isSuccess,
@@ -191,6 +191,19 @@ class APIManager: SessionManager {
     }
     
     // MARK: Un-Retweet
+    func unRetweet(_ tweet: Tweet, completion: @escaping (Tweet?, Error?) -> ()) {
+        let urlString = "https://api.twitter.com/1.1/statuses/unretweet/\(tweet.id_str).json"
+        self.request(urlString, method: .post, parameters: nil, encoding: URLEncoding.queryString).validate().responseJSON { (response) in
+            if response.result.isSuccess,
+                let tweetDictionary = response.result.value as? [String: Any] {
+                let tweet = Tweet(dictionary: tweetDictionary)
+                completion(tweet, nil)
+            } else {
+                print("error in second request")
+                completion(nil, response.result.error)
+            }
+        }
+    }
     
     // MARK: TODO: Compose Tweet
     

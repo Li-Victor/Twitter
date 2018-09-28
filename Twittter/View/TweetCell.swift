@@ -30,12 +30,23 @@ class TweetCell: UITableViewCell {
                 if let  error = error {
                     print("Error retweeting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
-                    print("Successfully retweeted the following Tweet: \n\(tweet.text)")
-                     self.tweet = tweet
+                    print("Successfully retweeted the following Tweet: \n\(tweet.text). Tweeted: \(tweet.retweeted)")
+                    self.tweet = tweet
                 }
             }
         } else {
             // user unretweet
+            APIManager.shared.unRetweet(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error unretweeting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully unretweeted the following Tweet: \n\(tweet.text). Tweeted: \(tweet.retweeted)")
+                    self.tweet = tweet
+                    // Response is not consistent for untweeting. But in real twitter app, the tweet is unretweeted
+                    self.tweet.retweeted = false
+                    self.tweet.retweetCount -= 1
+                }
+            }
         }
     }
     

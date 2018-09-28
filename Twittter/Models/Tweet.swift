@@ -10,7 +10,7 @@ import Foundation
 import DateToolsSwift
 
 struct Tweet {
-    let id: Int64 // For favoriting, retweeting & replying
+    let id_str: String // For favoriting, retweeting & replying
     let text: String // Text content of tweet
     var favoriteCount: Int // Update favorite count label
     var favorited: Bool // Configure favorite button
@@ -36,7 +36,7 @@ struct Tweet {
             self.retweetedByUser = nil
         }
         
-        id = dictionary["id"] as! Int64
+        id_str = dictionary["id_str"] as! String
         text = dictionary["text"] as! String
         favoriteCount = dictionary["favorite_count"] as! Int
         retweetCount = dictionary["retweet_count"] as! Int
