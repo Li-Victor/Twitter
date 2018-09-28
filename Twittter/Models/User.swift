@@ -9,45 +9,45 @@
 import Foundation
 
 struct User {
-    static var current: User?
+    private static var _current: User?
+    
+    static var current: User? {
+        get {
+            if _current == nil {
+                let defaults = UserDefaults.standard
+                if let userData = defaults.data(forKey: "currentUserData") {
+                    let dictionary = try! JSONSerialization.jsonObject(with: userData, options: []) as! [String: Any]
+                    _current = User(dictionary: dictionary)
+                }
+            }
+            return _current
+        }
+        set (user) {
+            _current = user
+            let defaults = UserDefaults.standard
+            if let user = user {
+                let data = try! JSONSerialization.data(withJSONObject: user.dictionary, options: [])
+                defaults.set(data, forKey: "currentUserData")
+            } else {
+                defaults.removeObject(forKey: "currentUserData")
+            }
+        }
+    }
     
     let name: String
     let screenName: String
     let profileImageURL: URL
     
+    let dictionary: [String: Any]
+    
     init(dictionary: [String: Any]) {
+        self.dictionary = dictionary
+        
         name = dictionary["name"] as! String
         screenName = dictionary["screen_name"] as! String
         
         var profileImagePath = dictionary["profile_image_url_https"] as! String
         profileImagePath = profileImagePath.replacingOccurrences(of: "_normal", with: "_bigger")
         profileImageURL = URL(string: profileImagePath)!
-    }
-}
-
-extension StringProtocol where Index == String.Index {
-    func index<T: StringProtocol>(of string: T, options: String.CompareOptions = []) -> Index? {
-        return range(of: string, options: options)?.lowerBound
-    }
-    func endIndex<T: StringProtocol>(of string: T, options: String.CompareOptions = []) -> Index? {
-        return range(of: string, options: options)?.upperBound
-    }
-    func indexes<T: StringProtocol>(of string: T, options: String.CompareOptions = []) -> [Index] {
-        var result: [Index] = []
-        var start = startIndex
-        while start < endIndex, let range = range(of: string, options: options, range: start..<endIndex) {
-            result.append(range.lowerBound)
-            start = range.lowerBound < range.upperBound ? range.upperBound : index(range.lowerBound, offsetBy: 1, limitedBy: endIndex) ?? endIndex
-        }
-        return result
-    }
-    func ranges<T: StringProtocol>(of string: T, options: String.CompareOptions = []) -> [Range<Index>] {
-        var result: [Range<Index>] = []
-        var start = startIndex
-        while start < endIndex, let range = range(of: string, options: options, range: start..<endIndex) {
-            result.append(range)
-            start = range.lowerBound < range.upperBound  ? range.upperBound : index(range.lowerBound, offsetBy: 1, limitedBy: endIndex) ?? endIndex
-        }
-        return result
     }
 }

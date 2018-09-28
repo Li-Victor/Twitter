@@ -22,6 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.userLogout()
         }
         
+        if User.current != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let navigationController = storyboard.instantiateViewController(withIdentifier: "navigationController")
+            window?.rootViewController = navigationController
+        }
+        
         return true
     }
     
