@@ -10,6 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var loginButton: UIButton!
     @IBAction func didTapLogin(_ sender: Any) {
         // performSegue(withIdentifier: "loginSegue", sender: nil)
         APIManager.shared.login(success: {
@@ -24,6 +25,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        loginButton.layer.cornerRadius = 5
         // Do any additional setup after loading the view.
     }
 
