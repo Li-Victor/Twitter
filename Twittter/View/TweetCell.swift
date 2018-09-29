@@ -8,14 +8,16 @@
 
 import UIKit
 import AlamofireImage
+import TTTAttributedLabel
 
-class TweetCell: UITableViewCell {
+class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
     
     @IBOutlet weak var tweetUserImage: UIImageView!
     @IBOutlet weak var tweetScreenNameLabel: UILabel!
     @IBOutlet weak var tweetDateLabel: UILabel!
     @IBOutlet weak var tweetUsernameLabel: UILabel!
-    @IBOutlet weak var tweetTextLabel: UILabel!
+    
+    @IBOutlet weak var tweetTextLabel: TTTAttributedLabel!
     
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var retweetCountLabel: UILabel!
@@ -79,11 +81,19 @@ class TweetCell: UITableViewCell {
         }
     }
     
+    func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
+        print("Clicking Link: \(url.absoluteString)")
+    }
+    
     private func configureCell() {
         tweetUserImage.af_setImage(withURL: tweet.user.profileImageURL)
         tweetScreenNameLabel.text = "@\(tweet.user.screenName)"
         tweetDateLabel.text = tweet.createdAtString
         tweetUsernameLabel.text = tweet.user.name
+        
+        // Clickable Links in Tweets
+        tweetTextLabel.delegate = self
+        tweetTextLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
         tweetTextLabel.text = tweet.text
         
         if tweet.favorited {
@@ -101,17 +111,16 @@ class TweetCell: UITableViewCell {
         retweetCountLabel.text = String(tweet.retweetCount)
         favoriteCountLabel.text = String(tweet.favoriteCount)
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         tweetUserImage.layer.cornerRadius = 25
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

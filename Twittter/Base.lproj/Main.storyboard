@@ -86,8 +86,8 @@
                                                     <color key="textColor" red="0.5725490196078431" green="0.61960784313725492" blue="0.6588235294117647" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can someone make a Friends style Master of None opening credits? Best one gets a signed poster or something? tag #MoNFriends" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8v-WF-Rvb">
-                                                    <rect key="frame" x="70" y="36.5" width="293.5" height="72"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can someone make a Friends style Master of None opening credits? Best one gets a signed poster or something? tag #MoNFriends" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8v-WF-Rvb" customClass="TTTAttributedLabel">
+                                                    <rect key="frame" x="70" y="36.5" width="291" height="72"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -191,7 +191,7 @@
                                             <outlet property="retweetCountLabel" destination="hrQ-Ex-u9n" id="dOH-FS-dmZ"/>
                                             <outlet property="tweetDateLabel" destination="j0C-gi-Q9S" id="jxm-7x-VWO"/>
                                             <outlet property="tweetScreenNameLabel" destination="adv-W2-Tg0" id="hmG-SB-d3M"/>
-                                            <outlet property="tweetTextLabel" destination="K8v-WF-Rvb" id="37x-vE-zUm"/>
+                                            <outlet property="tweetTextLabel" destination="K8v-WF-Rvb" id="JIT-je-1aR"/>
                                             <outlet property="tweetUserImage" destination="tV4-yL-LBm" id="Ogn-f3-vZA"/>
                                             <outlet property="tweetUsernameLabel" destination="kRj-Ma-3KZ" id="qF6-By-YPn"/>
                                         </connections>
