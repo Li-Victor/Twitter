@@ -218,6 +218,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="KUe-NN-RSp"/>
                     <connections>
+                        <outlet property="navItem" destination="KUe-NN-RSp" id="dba-oh-U5w"/>
                         <outlet property="tableView" destination="nPY-Kz-UpZ" id="GQX-sV-nGF"/>
                     </connections>
                 </viewController>

@@ -11,6 +11,7 @@ import UIKit
 class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
 
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet weak var navItem: UINavigationItem!
     private var refreshControl: UIRefreshControl!
     
     private var tweets: [Tweet] = [] {
@@ -39,6 +40,10 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @objc private func didPullToRefresh(_ refreshControl: UIRefreshControl) {
         fetchTweets()
+    }
+    
+    @objc private func makeTweet() {
+        print("tweet")
     }
     
     private func fetchTweets() {
@@ -121,6 +126,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         var insets = tableView.contentInset
         insets.bottom += InfiniteScrollActivityView.defaultHeight
         tableView.contentInset = insets
+        
+        navItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "edit-icon"), style: .plain, target: self, action: #selector(TimelineViewController.makeTweet))
         
         fetchTweets()
     }
