@@ -255,12 +255,15 @@
                                 <rect key="frame" x="16" y="61" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bh9-id-7tL">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bh9-id-7tL" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
                                 <rect key="frame" x="74" y="58" width="283" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What's happening?"/>
+                                </userDefinedRuntimeAttributes>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Character Count: 140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIp-2e-vET">
                                 <rect key="frame" x="16" y="199" width="341" height="21"/>
@@ -275,7 +278,7 @@
                     </view>
                     <connections>
                         <outlet property="characterCountLabel" destination="AIp-2e-vET" id="AP9-eG-lve"/>
-                        <outlet property="composeTextView" destination="bh9-id-7tL" id="fJE-lC-D4Y"/>
+                        <outlet property="composeTextView" destination="bh9-id-7tL" id="zNf-iZ-SZJ"/>
                         <outlet property="userImage" destination="g50-Kj-gNN" id="fEs-Te-iPp"/>
                     </connections>
                 </viewController>

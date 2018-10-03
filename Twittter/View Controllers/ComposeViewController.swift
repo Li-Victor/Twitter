@@ -8,6 +8,7 @@
 
 import UIKit
 import AlamofireImage
+import KMPlaceholderTextView
 
 protocol ComposeViewControllerDelegate: class {
     func did(post: Tweet)
@@ -20,7 +21,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     let characterLimit = 140
 
     @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var composeTextView: UITextView!
+    @IBOutlet weak var composeTextView: KMPlaceholderTextView!
     @IBOutlet weak var characterCountLabel: UILabel!
     
     @IBAction func onTapExit(_ sender: Any) {

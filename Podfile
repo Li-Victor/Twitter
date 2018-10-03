@@ -13,6 +13,7 @@ target 'Twittter' do
   pod 'KeychainAccess'
   pod 'DateToolsSwift'
   pod 'TTTAttributedLabel'
+  pod 'KMPlaceholderTextView', '~> 1.3.0'
 
 end
 
