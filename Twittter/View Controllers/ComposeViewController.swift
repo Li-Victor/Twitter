@@ -13,18 +13,22 @@ protocol ComposeViewControllerDelegate: class {
     func did(post: Tweet)
 }
 
-class ComposeViewController: UIViewController {
+class ComposeViewController: UIViewController, UITextViewDelegate {
     
     weak var delegate: ComposeViewControllerDelegate?
+    
+    let characterLimit = 140
 
-    @IBOutlet weak var composeTextField: UITextField!
     @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var composeTextView: UITextView!
+    @IBOutlet weak var characterCountLabel: UILabel!
+    
     @IBAction func onTapExit(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func didTapPost(_ sender: Any) {
-        if let text = composeTextField.text {
+        if let text = composeTextView.text {
             APIManager.shared.composeTweet(with: text) { (tweet, error) in
                 if let error = error {
                     print("Error composing Tweet: \(error.localizedDescription)")
@@ -37,11 +41,21 @@ class ComposeViewController: UIViewController {
         }
     }
     
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        // Construct what the new text would be if we allowed the user's latest edit
+        let newText = NSString(string: textView.text!).replacingCharacters(in: range, with: text)
+        
+        // TODO: Update Character Count Label
+        let difference = characterLimit - newText.count
+        characterCountLabel.text = "Character Count: \(difference)"
+        
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        composeTextView.delegate = self
         userImage.af_setImage(withURL: (User.current?.profileImageURL)!)
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
