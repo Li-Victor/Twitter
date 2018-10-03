@@ -8,8 +8,8 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
-
+class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, ComposeViewControllerDelegate {
+    
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet weak var navItem: UINavigationItem!
     private var refreshControl: UIRefreshControl!
@@ -28,6 +28,10 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         APIManager.shared.logout()
     }
     
+    func did(post: Tweet) {
+        fetchTweets()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets.count
     }
@@ -43,7 +47,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     @objc private func makeTweet() {
-        print("tweet")
+        self.performSegue(withIdentifier: "composeSegue", sender: nil)
     }
     
     private func fetchTweets() {
@@ -96,12 +100,19 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as! UITableViewCell
-        if let indexPath = tableView.indexPath(for: cell) {
-            let tweet = tweets[indexPath.row]
-            let tweetDetailViewController = segue.destination as! TweetDetailViewController
-            tweetDetailViewController.tweet = tweet
+        
+        if segue.identifier == "composeSegue" {
+            let composeViewController = segue.destination as! ComposeViewController
+            composeViewController.delegate = self
+        } else {
+            let cell = sender as! UITableViewCell
+            if let indexPath = tableView.indexPath(for: cell) {
+                let tweet = tweets[indexPath.row]
+                let tweetDetailViewController = segue.destination as! TweetDetailViewController
+                tweetDetailViewController.tweet = tweet
+            }
         }
+        
     }
     
     override func viewDidLoad() {

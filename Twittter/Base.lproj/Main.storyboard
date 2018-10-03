@@ -95,7 +95,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can someone make a Friends style Master of None opening credits? Best one gets a signed poster or something? tag #MoNFriends" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8v-WF-Rvb" customClass="TTTAttributedLabel">
-                                                    <rect key="frame" x="70" y="36.5" width="291" height="72"/>
+                                                    <rect key="frame" x="70" y="36.5" width="293.5" height="72"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -220,11 +220,60 @@
                     <connections>
                         <outlet property="navItem" destination="KUe-NN-RSp" id="dba-oh-U5w"/>
                         <outlet property="tableView" destination="nPY-Kz-UpZ" id="GQX-sV-nGF"/>
+                        <segue destination="TYI-MI-za0" kind="presentation" identifier="composeSegue" modalTransitionStyle="coverVertical" id="wPN-ef-rai"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cxL-vr-vxb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1534" y="128"/>
+        </scene>
+        <!--Compose View Controller-->
+        <scene sceneID="eBV-u5-SY4">
+            <objects>
+                <viewController id="TYI-MI-za0" customClass="ComposeViewController" customModule="Twittter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Opc-yJ-YVv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mej-dH-joG">
+                                <rect key="frame" x="26" y="23" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="close-icon"/>
+                                <connections>
+                                    <action selector="onTapExit:" destination="TYI-MI-za0" eventType="touchUpInside" id="nGE-dk-OWx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaB-G4-b40">
+                                <rect key="frame" x="315" y="20" width="42" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Tweet"/>
+                                <connections>
+                                    <action selector="didTapPost:" destination="TYI-MI-za0" eventType="touchUpInside" id="BhI-7g-lzC"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g50-Kj-gNN">
+                                <rect key="frame" x="16" y="61" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What's happening?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PUG-7C-xqk">
+                                <rect key="frame" x="74" y="61" width="283" height="104"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="9CL-km-SLP"/>
+                    </view>
+                    <connections>
+                        <outlet property="composeTextField" destination="PUG-7C-xqk" id="eKY-W3-6Ww"/>
+                        <outlet property="userImage" destination="g50-Kj-gNN" id="fEs-Te-iPp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MrK-gf-Syf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1534" y="877"/>
         </scene>
         <!--Tweet-->
         <scene sceneID="0zZ-RB-cao">
@@ -344,6 +393,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="close-icon" width="26" height="24"/>
         <image name="favor-icon-1" width="30" height="30"/>
         <image name="message-icon" width="30" height="30"/>
         <image name="reply-icon" width="30" height="30"/>
