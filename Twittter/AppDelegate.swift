@@ -24,8 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if User.current != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let navigationController = storyboard.instantiateViewController(withIdentifier: "navigationController")
-            window?.rootViewController = navigationController
+            let tabBarController = storyboard.instantiateViewController(withIdentifier: "tabBarController")
+            window?.rootViewController = tabBarController
         }
         
         return true
