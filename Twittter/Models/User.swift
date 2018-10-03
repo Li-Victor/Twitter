@@ -37,6 +37,11 @@ struct User {
     let name: String
     let screenName: String
     let profileImageURL: URL
+    let description: String
+    let tweetsCount: Int
+    let followersCount: Int
+    let followingCount: Int
+    let dateJoined: String
     
     let dictionary: [String: Any]
     
@@ -45,6 +50,11 @@ struct User {
         
         name = dictionary["name"] as! String
         screenName = dictionary["screen_name"] as! String
+        description = dictionary["description"] as! String
+        tweetsCount = dictionary["statuses_count"] as! Int
+        followersCount = dictionary["followers_count"] as! Int
+        followingCount = dictionary["friends_count"] as! Int
+        dateJoined = dictionary["created_at"] as! String
         
         var profileImagePath = dictionary["profile_image_url_https"] as! String
         profileImagePath = profileImagePath.replacingOccurrences(of: "_normal", with: "_bigger")
