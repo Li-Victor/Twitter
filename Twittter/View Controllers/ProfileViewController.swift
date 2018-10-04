@@ -11,6 +11,7 @@ import AlamofireImage
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var bannerImageView: UIImageView!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
@@ -23,11 +24,32 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         let user = User.current!
+        
+        if let profileBannerPath = user.profileBannerPath {
+            let profileBannerURL = URL(string: profileBannerPath)!
+            bannerImageView.af_setImage(withURL: profileBannerURL)
+        } else {
+            bannerImageView.image = UIImage(named: "default_profile_banner")
+        }
+        
+        userImageView.layer.masksToBounds = true
+        userImageView.layer.borderWidth = 3.5
+        userImageView.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        userImageView.layer.cornerRadius = userImageView.bounds.width / 2
+        
         userImageView.af_setImage(withURL: user.profileImageURL)
         nameLabel.text = user.name
-        screenNameLabel.text = user.screenName
+        screenNameLabel.text = "@\(user.screenName)"
         descriptionLabel.text = user.description
-        dateJoinedLabel.text = "Joined \(user.dateJoined)"
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E MMM d HH:mm:ss Z y"
+        let date = formatter.date(from: user.dateJoined)!
+        formatter.dateFormat = "LLLL YYYY"
+        
+        dateJoinedLabel.text = "Joined \(formatter.string(from: date))"
+        
+        
         followingCountLabel.text = "\(user.followingCount) Following"
         followersCountLabel.text = "\(user.followersCount) Followers"
     }

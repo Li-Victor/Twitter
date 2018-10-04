@@ -42,6 +42,7 @@ struct User {
     let followersCount: Int
     let followingCount: Int
     let dateJoined: String
+    let profileBannerPath: String?
     
     let dictionary: [String: Any]
     
@@ -55,6 +56,7 @@ struct User {
         followersCount = dictionary["followers_count"] as! Int
         followingCount = dictionary["friends_count"] as! Int
         dateJoined = dictionary["created_at"] as! String
+        profileBannerPath = dictionary["profile_banner_url"] as? String
         
         var profileImagePath = dictionary["profile_image_url_https"] as! String
         profileImagePath = profileImagePath.replacingOccurrences(of: "_normal", with: "_bigger")
