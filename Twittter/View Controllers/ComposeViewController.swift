@@ -23,6 +23,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var composeTextView: KMPlaceholderTextView!
     @IBOutlet weak var characterCountLabel: UILabel!
+    @IBOutlet weak var tweetButton: UIButton!
     
     @IBAction func onTapExit(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -50,13 +51,22 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         let difference = characterLimit - newText.count
         characterCountLabel.text = "Character Count: \(difference)"
         
+        if difference != characterLimit {
+            tweetButton.backgroundColor = #colorLiteral(red: 0.1137254902, green: 0.631372549, blue: 0.9490196078, alpha: 1)
+        } else {
+            tweetButton.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
+        }
+        
         return true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         composeTextView.delegate = self
+        userImage.layer.cornerRadius = 17.5
         userImage.af_setImage(withURL: (User.current?.profileImageURL)!)
+        
+        tweetButton.layer.cornerRadius = 12.5
     }
 
     override func didReceiveMemoryWarning() {
