@@ -27,9 +27,16 @@ class TweetDetailViewController: UIViewController, TTTAttributedLabelDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tweetUserImageView.layer.cornerRadius = 25
         tweetUserImageView.af_setImage(withURL: tweet.user.profileImageURL)
         tweetUserScreenNameLabel.text = "@\(tweet.user.screenName)"
-        tweetDateLabel.text = tweet.createdAtString
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E MMM d HH:mm:ss Z y"
+        let date = formatter.date(from: tweet.createdAtString)!
+        formatter.dateFormat = "MM/d/yy, h:mm"
+        
+        tweetDateLabel.text = formatter.string(from: date)
         tweetUsernameLabel.text = tweet.user.name
         
         // Clickable Links in Tweets

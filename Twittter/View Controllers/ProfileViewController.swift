@@ -49,7 +49,6 @@ class ProfileViewController: UIViewController {
         
         dateJoinedLabel.text = "Joined \(formatter.string(from: date))"
         
-        
         followingCountLabel.text = "\(user.followingCount) Following"
         followersCountLabel.text = "\(user.followersCount) Followers"
     }

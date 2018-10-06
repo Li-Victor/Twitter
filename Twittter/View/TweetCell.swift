@@ -88,7 +88,15 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
     private func configureCell() {
         tweetUserImage.af_setImage(withURL: tweet.user.profileImageURL)
         tweetScreenNameLabel.text = "@\(tweet.user.screenName)"
-        tweetDateLabel.text = tweet.createdAtString
+        
+        let formatter = DateFormatter()
+        // Configure the input format to parse the date string
+        formatter.dateFormat = "E MMM d HH:mm:ss Z y"
+        // Convert String to Date
+        let date = formatter.date(from: tweet.createdAtString)!
+        let createdAtString = date.shortTimeAgo(since: Date())
+        tweetDateLabel.text = createdAtString
+        
         tweetUsernameLabel.text = tweet.user.name
         
         // Clickable Links in Tweets

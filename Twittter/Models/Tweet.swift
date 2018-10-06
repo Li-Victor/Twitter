@@ -49,13 +49,8 @@ struct Tweet {
         self.user = User(dictionary: user)
         
         // Format and set createdAtString
-        let createdAtOriginalString = dictionary["created_at"] as! String
-        let formatter = DateFormatter()
-        // Configure the input format to parse the date string
-        formatter.dateFormat = "E MMM d HH:mm:ss Z y"
-        // Convert String to Date
-        let date = formatter.date(from: createdAtOriginalString)!
-        self.createdAtString = date.shortTimeAgo(since: Date())
+        createdAtString = dictionary["created_at"] as! String
+        
     }
     
     static func tweets(with array: [[String: Any]]) -> [Tweet] {
