@@ -34,7 +34,7 @@ class TweetDetailViewController: UIViewController, TTTAttributedLabelDelegate {
         let formatter = DateFormatter()
         formatter.dateFormat = "E MMM d HH:mm:ss Z y"
         let date = formatter.date(from: tweet.createdAtString)!
-        formatter.dateFormat = "MM/d/yy, h:mm"
+        formatter.dateFormat = "M/d/yy, h:mm a"
         
         tweetDateLabel.text = formatter.string(from: date)
         tweetUsernameLabel.text = tweet.user.name
