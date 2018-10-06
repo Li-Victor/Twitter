@@ -17,6 +17,7 @@ class TweetDetailViewController: UIViewController, TTTAttributedLabelDelegate {
     @IBOutlet weak var tweetUserScreenNameLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: TTTAttributedLabel!
     @IBOutlet weak var tweetDateLabel: UILabel!
+    @IBOutlet weak var tweetRetweetsLabel: UILabel!
     @IBOutlet weak var tweetLikesLabel: UILabel!
     
     @IBOutlet weak var retweetButton: UIButton!
@@ -44,6 +45,12 @@ class TweetDetailViewController: UIViewController, TTTAttributedLabelDelegate {
         tweetTextLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
         tweetTextLabel.text = tweet.text
         tweetLikesLabel.text = "\(tweet.favoriteCount) Likes"
+        
+        if tweet.retweetCount == 0 {
+            tweetRetweetsLabel.text = " "
+        } else {
+            tweetRetweetsLabel.text = "\(tweet.retweetCount) Retweets"
+        }
         
         if tweet.favorited {
             favoriteButton.setImage(UIImage(named: "favor-icon"), for: .normal)
