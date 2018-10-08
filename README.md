@@ -40,6 +40,10 @@ Here's a walkthrough of implemented user stories:
 
 ![](https://github.com/Li-Victor/Twittter/blob/master/1.gif)
 
+![](https://github.com/Li-Victor/Twittter/blob/master/2.gif)
+
+![](https://github.com/Li-Victor/Twittter/blob/master/3.gif)
+
 GIF created with [Giphy Capture](https://giphy.com/apps/giphycapture).
 
 ## Notes
