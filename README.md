@@ -16,6 +16,10 @@ The following **required** functionality is completed:
 - [x] User can pull to refresh. (1pt)
 - [x] User can tap the retweet and favorite buttons in a tweet cell to retweet and/or favorite a tweet. (2pts)
 - [x] Using AutoLayout, the Tweet cell should adjust it's layout for iPhone 7, Plus and SE device sizes as well as accommodate device rotation. (1pt)
+- [x] User can tap on a tweet to view it in a detail view, with controls to retweet, favorite, and reply.
+- [x] User can compose a new tweet by tapping on a compose button.
+- [x] When composing a tweet, user sees a countdown for the number of characters remaining for the tweet (out of 140)
+- [x] User can view their profile in a profile tab. This contains the user header with a picture and tagline, as well as a section with the users basic stats: # tweets, # following, # followers
 
 The following **stretch** features are implemented:
 
@@ -24,6 +28,13 @@ The following **stretch** features are implemented:
 - [x] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count. (1pt)
 - [x] Links in tweets are clickable. (2pts)
 - [x] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client. (2pts)
+- [ ] Profile view should include that user's timeline
+- [ ] User can tap the profile image in any tweet to see another user's profile, containing the user header with a picture and tagline, as well as a section with the user's basic stats (# tweets, # following, # followers)
+- [ ] After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
+- [ ] User can reply to any tweet, and replies should be prefixed with the username and the reply_id should be set when posting the tweet
+- [ ] User sees embedded images in tweet if available
+- [ ] User can switch between timeline, mentions, or profile view through a tab bar
+- [ ] Pulling down the profile page should blur and resize the header image.
 
 The following **additional** features are implemented:
 
